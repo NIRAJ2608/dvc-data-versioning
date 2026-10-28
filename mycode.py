@@ -4,12 +4,14 @@ import os
 
 os.makedirs("data", exist_ok=True)
 
-df = pd.DataFrame({
-    "Name": ["Amit", "Priya", "Rahul"],
-    "Marks": [85, 90, 78]
-})
+file_path = "data/students.csv"
 
-df.to_csv("data/students.csv", index=False)
+new_row = {"Name": "Sneha", "Marks": 92}
 
-print("CSV file created successfully!")
+df = pd.read_csv(file_path)
+df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
+
+df.to_csv(file_path, index=False)
+
+print("New row added successfully!")
 print(df)
